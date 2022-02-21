@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import com.example.movielist.R
 import com.example.movielist.databinding.FragmentHomeListBinding
 import com.example.movielist.viewmodel.MovieViewModel
+import com.example.movielist.views.adapters.MovieListAdapter
 
 class HomeList : Fragment() {
     private lateinit var binding: FragmentHomeListBinding
@@ -24,8 +25,14 @@ class HomeList : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val adapter = MovieListAdapter()
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home_list, container, false)
+        binding.rvMovieList.adapter = adapter
+        movieViewModel.movieLiveData.observe(viewLifecycleOwner, Observer {
+            adapter.updateList(it)
+        })
+        movieViewModel.updateMovieList()
 
         return binding.root
     }
