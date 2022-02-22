@@ -8,7 +8,6 @@
         android:id="@+id/cv_movie"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:background="#6C9BA1"
         android:layout_margin="16dp" >
 
         <androidx.constraintlayout.widget.ConstraintLayout
