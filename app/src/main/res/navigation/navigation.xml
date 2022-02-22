@@ -7,5 +7,18 @@
     <fragment
         android:id="@+id/homeList"
         android:name="com.example.movielist.views.HomeList"
-        android:label="HomeList" />
+        android:label="HomeList" >
+        <action
+            android:id="@+id/action_homeList_to_movieInfo"
+            app:destination="@id/movieInfo"
+            app:popUpTo="@id/movieInfo" />
+    </fragment>
+    <fragment
+        android:id="@+id/movieInfo"
+        android:name="com.example.movielist.views.MovieInfo"
+        android:label="MovieInfo" >
+        <action
+            android:id="@+id/action_movieInfo_to_homeList"
+            app:destination="@id/homeList" />
+    </fragment>
 </navigation>

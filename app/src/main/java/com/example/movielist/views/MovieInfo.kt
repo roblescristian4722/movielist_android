@@ -8,15 +8,14 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.movielist.R
-import com.example.movielist.databinding.FragmentHomeListBinding
+import com.example.movielist.databinding.FragmentMovieInfoBinding
 import com.example.movielist.viewmodel.MovieViewModel
-import com.example.movielist.views.adapters.MovieListAdapter
 
-class HomeList : Fragment() {
-    private lateinit var binding: FragmentHomeListBinding
-    private val movieViewModel: MovieViewModel by activityViewModels()
+class MovieInfo : Fragment() {
+    val movieViewModel: MovieViewModel by activityViewModels()
+    lateinit var binding: FragmentMovieInfoBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,16 +25,15 @@ class HomeList : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val adapter = MovieListAdapter(movieViewModel)
         // Inflate the layout for this fragment
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home_list, container, false)
-        binding.rvMovieList.adapter = adapter
-        movieViewModel.movieLiveData.observe(viewLifecycleOwner, Observer {
-            adapter.updateList(it)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_movie_info,container, false)
+        binding.movieInfo = movieViewModel
+
+        movieViewModel.movieSelectedLiveData.observe(viewLifecycleOwner, Observer {
+            val baseUrl = "https://image.tmdb.org/t/p/original/"
+            Glide.with(this).load(baseUrl + it.poster).into(binding.ivMovieImage)
         })
-        movieViewModel.updateMovieList()
 
         return binding.root
     }
-
 }

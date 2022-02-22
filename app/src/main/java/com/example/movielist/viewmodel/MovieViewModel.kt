@@ -19,6 +19,7 @@ class MovieViewModel: ViewModel() {
         .build()
     private val movieService = movieAPI.create(TMDBService::class.java)
     val movieLiveData = MutableLiveData<List<PopularMovieResponse>>()
+    val movieSelectedLiveData = MutableLiveData<PopularMovieResponse>()
 
     init {
         updateMovieList()
@@ -32,5 +33,9 @@ class MovieViewModel: ViewModel() {
                 movieLiveData.postValue(it.results)
             }
         }
+    }
+
+    fun selectMovie(movie: PopularMovieResponse) {
+        movieSelectedLiveData.postValue(movie)
     }
 }

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout>
+    <data>
+        <variable
+            name="movieInfo"
+            type="com.example.movielist.viewmodel.MovieViewModel" />
+    </data>
+    <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".views.MovieInfo" >
+
+        <ImageView
+            android:id="@+id/iv_movie_image"
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            android:layout_marginTop="16dp" />
+
+        <TextView
+            android:id="@+id/tv_description"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@{movieInfo.movieSelectedLiveData.overview}"
+            android:textSize="24sp"
+            android:justificationMode="inter_word" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</layout>

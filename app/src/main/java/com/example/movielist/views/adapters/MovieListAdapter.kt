@@ -5,17 +5,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.movielist.R
 import com.example.movielist.models.dataclasses.PopularMovieResponse
+import com.example.movielist.viewmodel.MovieViewModel
 
-class MovieListAdapter: RecyclerView.Adapter<MovieListAdapter.ViewHolder>() {
+class MovieListAdapter(private val viewModel: MovieViewModel): RecyclerView.Adapter<MovieListAdapter.ViewHolder>() {
     private var movies = mutableListOf<PopularMovieResponse>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.fragment_movie_card, parent, false)
-        return ViewHolder(view)
+        return ViewHolder(view, viewModel)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -29,7 +31,7 @@ class MovieListAdapter: RecyclerView.Adapter<MovieListAdapter.ViewHolder>() {
         notifyDataSetChanged()
     }
 
-    inner class ViewHolder(private val view: View): RecyclerView.ViewHolder(view) {
+    inner class ViewHolder(private val view: View, private val viewModel: MovieViewModel): RecyclerView.ViewHolder(view) {
         private val baseImageUrl = "https://image.tmdb.org/t/p/original/"
         private val ivMovieImage = view.findViewById<ImageView>(R.id.iv_movie_image)
         private val tvTitle = view.findViewById<TextView>(R.id.tv_title)
@@ -41,6 +43,10 @@ class MovieListAdapter: RecyclerView.Adapter<MovieListAdapter.ViewHolder>() {
             tvVoteAverage.text = movie.voteAverage.toString()
             tvDate.text = movie.date
             Glide.with(view).load(baseImageUrl + movie.poster).into(ivMovieImage)
+            view.setOnClickListener {
+                viewModel.selectMovie(movie)
+                view.findNavController().navigate(R.id.action_homeList_to_movieInfo)
+            }
         }
     }
 }
