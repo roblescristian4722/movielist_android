@@ -34,6 +34,9 @@ class MovieInfo : Fragment() {
             Glide.with(this).load(baseUrl + it.poster).into(binding.ivMovieImage)
         })
 
+        binding.svMovieInfo.viewTreeObserver.addOnScrollChangedListener {
+        }
+
         return binding.root
     }
 }
