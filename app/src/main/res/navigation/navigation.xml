@@ -10,8 +10,7 @@
         android:label="HomeList" >
         <action
             android:id="@+id/action_homeList_to_movieInfo"
-            app:destination="@id/movieInfo"
-            app:popUpTo="@id/movieInfo" />
+            app:destination="@id/movieInfo" />
     </fragment>
     <fragment
         android:id="@+id/movieInfo"
