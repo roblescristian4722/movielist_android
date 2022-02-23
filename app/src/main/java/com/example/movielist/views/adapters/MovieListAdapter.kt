@@ -32,7 +32,7 @@ class MovieListAdapter(private val viewModel: MovieViewModel): RecyclerView.Adap
     }
 
     inner class ViewHolder(private val view: View, private val viewModel: MovieViewModel): RecyclerView.ViewHolder(view) {
-        private val baseImageUrl = "https://image.tmdb.org/t/p/original/"
+        private val baseImageUrl = "https://image.tmdb.org/t/p/w500/"
         private val ivMovieImage = view.findViewById<ImageView>(R.id.iv_movie_image)
         private val tvTitle = view.findViewById<TextView>(R.id.tv_title)
         private val tvVoteAverage = view.findViewById<TextView>(R.id.tv_rating)
@@ -42,7 +42,10 @@ class MovieListAdapter(private val viewModel: MovieViewModel): RecyclerView.Adap
             tvTitle.text = movie.title
             tvVoteAverage.text = movie.voteAverage.toString()
             tvDate.text = movie.date
-            Glide.with(view).load(baseImageUrl + movie.poster).into(ivMovieImage)
+            Glide.with(view)
+                .load(baseImageUrl + movie.poster)
+                .fitCenter()
+                .into(ivMovieImage)
             view.setOnClickListener {
                 viewModel.selectMovie(movie)
                 view.findNavController().navigate(R.id.action_homeList_to_movieInfo)
