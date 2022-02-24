@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.RecyclerView
 import com.example.movielist.R
 import com.example.movielist.databinding.FragmentHomeListBinding
 import com.example.movielist.viewmodel.MovieViewModel
