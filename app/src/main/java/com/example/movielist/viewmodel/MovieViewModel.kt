@@ -1,5 +1,6 @@
 package com.example.movielist.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.movielist.models.TMDBService
@@ -10,9 +11,7 @@ import kotlinx.coroutines.launch
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class MovieViewModel: ViewModel() {
-    private val baseUrl = "https://api.themoviedb.org/"
-    private val apiKey = "8cf6b9028b7faea32272410623cc9121"
+class MovieViewModel(private val baseUrl: String, private val apiKey: String): ViewModel() {
     private val movieAPI = Retrofit.Builder()
         .baseUrl(baseUrl)
         .addConverterFactory(GsonConverterFactory.create())
@@ -22,6 +21,7 @@ class MovieViewModel: ViewModel() {
     val movieSelectedLiveData = MutableLiveData<PopularMovieResponse>()
 
     init {
+        Log.d("baseUrl", baseUrl)
         updateMovieList()
     }
 

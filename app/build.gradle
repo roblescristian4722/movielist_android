@@ -61,4 +61,9 @@ dependencies {
     // Glide
     implementation 'com.github.bumptech.glide:glide:4.13.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.13.0'
+
+    // Koin main features for Android
+    implementation "io.insert-koin:koin-android:3.1.5"
+    // Navigation Graph
+    implementation "io.insert-koin:koin-androidx-navigation:3.1.5"
 }
