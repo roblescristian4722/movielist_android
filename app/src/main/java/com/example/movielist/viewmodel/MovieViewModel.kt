@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.movielist.models.TMDBService
+import com.example.movielist.models.dataclasses.GenreGroup
 import com.example.movielist.models.dataclasses.PopularMovieResponse
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -21,6 +22,7 @@ class MovieViewModel(private val baseUrl: String, private val apiKey: String): V
     val movieSelectedLiveData = MutableLiveData<PopularMovieResponse>()
     val posterBaseUrlLiveData = MutableLiveData<String>()
     val logoBaseUrlLiveData = MutableLiveData<String>()
+    val movieGenresLiveData = MutableLiveData<Map<Int, GenreGroup>>()
 
     init {
         // Updates list immediately after MovieViewModel gets instantiated
@@ -33,10 +35,34 @@ class MovieViewModel(private val baseUrl: String, private val apiKey: String): V
      */
     fun updateMovieList() {
         CoroutineScope(Dispatchers.IO).launch {
-            val call = movieService.getPopularMovies(apiKey)
-            val body = call.body()
-            body?.let {
+            // Call and body used for fetching popular movies
+            val callPopularMovies = movieService.getPopularMovies(apiKey)
+            val bodyPopularMovies = callPopularMovies.body()
+
+            // Call and body used for fetching genres
+            val callGenres = movieService.getGenres(apiKey)
+            val bodyGenres = callGenres.body()
+
+            // List of popular movies and map of genres both fetched from TMDB
+            var movies: List<PopularMovieResponse>? = null
+            var genres: Map<Int, GenreGroup>? = null
+
+            bodyPopularMovies?.let {
+                movies = it.results
                 movieLiveData.postValue(it.results)
+            }
+
+            bodyGenres?.genres?.let { res ->
+                genres = res.associate { it.id to GenreGroup(it.name, mutableListOf()) }
+            }
+
+            // If both movies and genres were fetched correctly
+            if (!movies.isNullOrEmpty() && !genres.isNullOrEmpty()) {
+                for (movie in movies!!) {
+                    genres!![movie.genreIds[0]]?.movies?.add(movie)
+                }
+                Log.d("genres", "$genres")
+                movieLiveData.postValue(movies!!)
             }
         }
     }
@@ -55,7 +81,6 @@ class MovieViewModel(private val baseUrl: String, private val apiKey: String): V
             }
         }
     }
-
 
     fun selectMovie(movie: PopularMovieResponse) {
         movieSelectedLiveData.postValue(movie)

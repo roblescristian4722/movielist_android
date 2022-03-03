@@ -9,4 +9,5 @@ data class PopularMovieResponse(
     @SerializedName("poster_path") val poster: String,
     @SerializedName("release_date") val date: String,
     @SerializedName("overview") val overview: String,
+    @SerializedName("genre_ids") val genreIds: List<Int>,
 )
