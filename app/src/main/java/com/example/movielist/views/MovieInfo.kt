@@ -26,15 +26,14 @@ class MovieInfo : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        Log.d("module", "$movieViewModel")
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_movie_info,container, false)
         binding.movieInfo = movieViewModel
 
         movieViewModel.movieSelectedLiveData.observe(viewLifecycleOwner, Observer {
-            val baseUrl = "https://image.tmdb.org/t/p/original/"
+            val imageUrl = movieViewModel.posterBaseUrlLiveData.value + it.poster
             Glide.with(this)
-                .load(baseUrl + it.poster)
+                .load(imageUrl)
                 .fitCenter()
                 .into(binding.ivMovieImage)
         })
