@@ -49,7 +49,6 @@ class MovieViewModel(private val baseUrl: String, private val apiKey: String): V
 
             bodyPopularMovies?.let {
                 movies = it.results
-                movieLiveData.postValue(it.results)
             }
 
             bodyGenres?.genres?.let { res ->
@@ -62,7 +61,7 @@ class MovieViewModel(private val baseUrl: String, private val apiKey: String): V
                     genres!![movie.genreIds[0]]?.movies?.add(movie)
                 }
                 Log.d("genres", "$genres")
-                movieLiveData.postValue(movies!!)
+                movieGenresLiveData.postValue(genres!!)
             }
         }
     }

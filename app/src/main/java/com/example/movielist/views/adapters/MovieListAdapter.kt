@@ -9,10 +9,13 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.movielist.R
+import com.example.movielist.models.dataclasses.GenreGroup
 import com.example.movielist.models.dataclasses.PopularMovieResponse
 import com.example.movielist.viewmodel.MovieViewModel
 
-class MovieListAdapter(private val viewModel: MovieViewModel): RecyclerView.Adapter<MovieListAdapter.ViewHolder>() {
+class MovieListAdapter(
+    private val viewModel: MovieViewModel,
+    private val genre: Int): RecyclerView.Adapter<MovieListAdapter.ViewHolder>() {
     private var movies = mutableListOf<PopularMovieResponse>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -21,14 +24,17 @@ class MovieListAdapter(private val viewModel: MovieViewModel): RecyclerView.Adap
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(movies[position])
+        if (movies.size > 0)
+            holder.bind(movies[position])
     }
 
     override fun getItemCount(): Int = movies.size
 
-    fun updateList(newMovieList: List<PopularMovieResponse>) {
-        movies = newMovieList.toMutableList()
-        notifyDataSetChanged()
+    fun updateList(newMovieMap: Map<Int, GenreGroup>) {
+        newMovieMap[genre]?.movies?.let {
+            movies = it
+            notifyDataSetChanged()
+        }
     }
 
     inner class ViewHolder(private val view: View, private val viewModel: MovieViewModel): RecyclerView.ViewHolder(view) {
