@@ -19,11 +19,16 @@
             android:textSize="24sp"
             android:layout_marginTop="16dp"/>
 
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:id="@+id/ll_movie_list"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/ll_movie_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+        </ScrollView>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>
