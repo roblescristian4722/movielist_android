@@ -12,13 +12,10 @@
                 motion:motionTarget="@+id/iv_movie_image"
                 motion:framePosition="100"
                 android:alpha="0" />
-            <KeyAttribute
-                motion:motionTarget="@+id/iv_movie_image"
-                motion:framePosition="100"
-                android:scaleY="0" />
         </KeyFrameSet>
         <OnSwipe
-            motion:touchAnchorId="@+id/sv_info" />
+            motion:dragDirection="dragUp"
+            motion:touchAnchorSide="bottom"/>
     </Transition>
 
     <ConstraintSet android:id="@+id/start">
@@ -40,7 +37,7 @@
         <Constraint
             android:id="@+id/iv_movie_image"
             android:layout_width="match_parent"
-            android:layout_height="1dp" />
+            android:layout_height="50dp" />
         <Constraint
             android:id="@+id/sv_info"
             android:layout_width="match_parent"

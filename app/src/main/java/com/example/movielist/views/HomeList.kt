@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.core.view.marginLeft
 import androidx.databinding.DataBindingUtil
@@ -39,33 +40,36 @@ class HomeList : Fragment() {
         movieViewModel.movieGenresLiveData.observe(viewLifecycleOwner, Observer {
             Log.d("observer", "$it")
             val tvContextThemeWrapper = ContextThemeWrapper(requireContext(), R.style.genre_title)
-            val rvContextThemeWrapper = ContextThemeWrapper(requireContext(), R.style.genre_list)
             var tvGenre: TextView
             var rvGenre: RecyclerView
+            val newLinearLayout = LinearLayout(requireContext())
+            newLinearLayout.orientation = LinearLayout.VERTICAL
             binding.llMovieList.removeAllViews()
             for (genre in it) {
                 if (genre.value.movies.size > 0) {
                     // Title gets crated and added programmatically to layout
-                    val tvGenreParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT)
-                    tvGenreParams.setMargins(16, 16, 0, 0)
+                    val tvGenreParams = LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.WRAP_CONTENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT)
+                    tvGenreParams.setMargins(32, 32, 16, 8)
                     tvGenre = TextView(tvContextThemeWrapper)
                     tvGenre.text = genre.value.name
                     tvGenre.layoutParams = tvGenreParams
-                    binding.llMovieList.addView(tvGenre)
+                    newLinearLayout.addView(tvGenre)
 
                     // RecyclerView gets created and added programmatically to layout
                     val adapter = MovieListAdapter(movieViewModel, genre.key)
                     val layoutManager = LinearLayoutManager(requireContext())
-
                     layoutManager.orientation = RecyclerView.HORIZONTAL
 
                     rvGenre = RecyclerView(requireContext())
                     rvGenre.layoutManager = layoutManager
                     rvGenre.adapter = adapter
                     adapter.updateList(it)
-                    binding.llMovieList.addView(rvGenre)
+                    newLinearLayout.addView(rvGenre)
                 }
             }
+            binding.llMovieList.addView(newLinearLayout)
         })
 
         // Updates the movie list every time this fragment gets rendered

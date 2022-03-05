@@ -18,7 +18,6 @@ class MovieViewModel(private val baseUrl: String, private val apiKey: String): V
         .addConverterFactory(GsonConverterFactory.create())
         .build()
     private val movieService = movieAPI.create(TMDBService::class.java)
-    val movieLiveData = MutableLiveData<List<PopularMovieResponse>>()
     val movieSelectedLiveData = MutableLiveData<PopularMovieResponse>()
     val posterBaseUrlLiveData = MutableLiveData<String>()
     val logoBaseUrlLiveData = MutableLiveData<String>()
