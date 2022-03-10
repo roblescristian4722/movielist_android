@@ -1,5 +1,6 @@
-package com.example.movielist.views.adapters
+package com.example.movielist.adapters
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,9 +10,10 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.movielist.R
-import com.example.movielist.models.dataclasses.GenreGroup
-import com.example.movielist.models.dataclasses.PopularMovieResponse
+import com.example.movielist.models.GenreGroup
+import com.example.movielist.models.PopularMovieResponse
 import com.example.movielist.viewmodel.MovieViewModel
+import com.google.firebase.analytics.FirebaseAnalytics
 
 class MovieListAdapter(
     private val viewModel: MovieViewModel,
@@ -47,12 +49,26 @@ class MovieListAdapter(
             tvTitle.text = movie.title
             tvVoteAverage.text = movie.voteAverage.toString()
             tvDate.text = movie.date
+
+            // Renders image on card
             Glide.with(view)
                 .load(viewModel.logoBaseUrlLiveData.value + movie.poster)
                 .fitCenter()
                 .into(ivMovieImage)
+
             view.setOnClickListener {
+                // Gets Google Analytics instance
+                val firebase = FirebaseAnalytics.getInstance(view.context)
+                val bundle = Bundle()
+
+                // Logs the click event
+                bundle.putInt(FirebaseAnalytics.Param.ITEM_ID, movie.id)
+                bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, movie.title)
+                firebase.logEvent(FirebaseAnalytics.Event.SELECT_ITEM, bundle)
+
+                // Selects movie info to be displayed on MovieInfo view via ViewModel
                 viewModel.selectMovie(movie)
+                // Navigates to MovieInfo fragment
                 view.findNavController().navigate(R.id.action_homeList_to_movieInfo)
             }
         }

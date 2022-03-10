@@ -8,9 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import android.widget.RelativeLayout
 import android.widget.TextView
-import androidx.core.view.marginLeft
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,11 +16,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.movielist.R
 import com.example.movielist.databinding.FragmentHomeListBinding
 import com.example.movielist.viewmodel.MovieViewModel
-import com.example.movielist.views.adapters.MovieListAdapter
+import com.example.movielist.adapters.MovieListAdapter
+import com.example.movielist.retrofitservices.TMDBService
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class HomeList : Fragment() {
     private val movieViewModel: MovieViewModel by sharedViewModel()
+    private val movieService: TMDBService by inject()
     private lateinit var binding: FragmentHomeListBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -73,7 +74,8 @@ class HomeList : Fragment() {
         })
 
         // Updates the movie list every time this fragment gets rendered
-        movieViewModel.updateMovieList()
+        movieService.updateMovieList()
+        movieService.getImageInfo()
         return binding.root
     }
 }
