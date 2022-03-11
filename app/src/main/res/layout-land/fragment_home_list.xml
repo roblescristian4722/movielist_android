@@ -9,16 +9,6 @@
         tools:context=".views.HomeList"
         android:background="@drawable/layout_background_gradient">
 
-        <TextView
-            android:id="@+id/tv_list_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:text="@string/list_title"
-            android:textStyle="bold"
-            android:textSize="24sp"
-            android:layout_marginTop="16dp"/>
-
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">

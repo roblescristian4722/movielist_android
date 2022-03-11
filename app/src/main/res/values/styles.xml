@@ -15,4 +15,11 @@
         <item name="android:layout_height">wrap_content</item>
     </style>
 
+    <style name="genre_card">
+        <item name="android:textSize">42sp</item>
+        <item name="android:textStyle">italic</item>
+        <item name="android:textAlignment">textEnd</item>
+        <item name="android:gravity">bottom</item>
+    </style>
+
 </resources>

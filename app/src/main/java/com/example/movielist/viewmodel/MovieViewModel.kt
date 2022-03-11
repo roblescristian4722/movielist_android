@@ -2,16 +2,19 @@ package com.example.movielist.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.movielist.models.ConfigurationResponse
 import com.example.movielist.models.GenreGroup
+import com.example.movielist.models.GenreInfoResponse
 import com.example.movielist.models.PopularMovieResponse
 
-class MovieViewModel(): ViewModel() {
-    val movieSelectedLiveData = MutableLiveData<PopularMovieResponse>()
-    val posterBaseUrlLiveData = MutableLiveData<String>()
-    val logoBaseUrlLiveData = MutableLiveData<String>()
-    val movieGenresLiveData = MutableLiveData<Map<Int, GenreGroup>>()
+class MovieViewModel: ViewModel() {
+    val selectedMovieLiveData = MutableLiveData<PopularMovieResponse>()
+    val configurationLiveData = MutableLiveData<ConfigurationResponse>()
+    val popularMoviesByGenreLiveData = MutableLiveData<Map<Int, GenreGroup>>()
+    val genreListLiveData = MutableLiveData<List<GenreInfoResponse>>()
+    val selectedGenreMoviesLiveData = MutableLiveData<List<PopularMovieResponse>>()
 
     fun selectMovie(movie: PopularMovieResponse) {
-        movieSelectedLiveData.postValue(movie)
+        selectedMovieLiveData.postValue(movie)
     }
 }

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".views.GenreCard">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_genre"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_margin="16dp" >
+
+        <TextView
+            android:id="@+id/tv_genre"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/background_gradient"
+            tools:text="Sample text"
+            style="@style/genre_card" />
+    </androidx.cardview.widget.CardView>
+</layout>

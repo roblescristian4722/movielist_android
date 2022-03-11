@@ -29,12 +29,14 @@ class MovieInfo : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_movie_info,container, false)
         binding.movieInfo = movieViewModel
 
-        movieViewModel.movieSelectedLiveData.observe(viewLifecycleOwner, Observer {
-            val imageUrl = movieViewModel.posterBaseUrlLiveData.value + it.poster
-            Glide.with(this)
-                .load(imageUrl)
-                .fitCenter()
-                .into(binding.ivMovieImage)
+        movieViewModel.selectedMovieLiveData.observe(viewLifecycleOwner, Observer {
+            movieViewModel.configurationLiveData.value?.let { configuration ->
+                Glide.with(this)
+                    .load(getString(R.string.image_base_url) + configuration.posterSizes[configuration.posterSizes.size - 1] + it.poster)
+                    .fitCenter()
+                    .into(binding.ivMovieImage)
+
+            }
         })
 
         return binding.root

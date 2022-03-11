@@ -38,8 +38,7 @@ class HomeList : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home_list, container, false)
 
         // Everytime the livedata gets updated the adapter updates too
-        movieViewModel.movieGenresLiveData.observe(viewLifecycleOwner, Observer {
-            Log.d("observer", "$it")
+        movieViewModel.popularMoviesByGenreLiveData.observe(viewLifecycleOwner, Observer {
             val tvContextThemeWrapper = ContextThemeWrapper(requireContext(), R.style.genre_title)
             var tvGenre: TextView
             var rvGenre: RecyclerView
@@ -74,9 +73,6 @@ class HomeList : Fragment() {
             binding.llMovieList.addView(newLinearLayout)
         })
 
-        // Updates the movie list every time this fragment gets rendered
-        movieService.updateMovieList()
-        movieService.getImageInfo()
         return binding.root
     }
 }

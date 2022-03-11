@@ -51,10 +51,12 @@ class MovieListAdapter(
             tvDate.text = movie.date
 
             // Renders image on card
-            Glide.with(view)
-                .load(viewModel.logoBaseUrlLiveData.value + movie.poster)
-                .fitCenter()
-                .into(ivMovieImage)
+            viewModel.configurationLiveData.value?.let {
+                Glide.with(view)
+                    .load(view.context.getString(R.string.image_base_url) + it.logoSizes[it.logoSizes.size - 1] + movie.poster)
+                    .fitCenter()
+                    .into(ivMovieImage)
+            }
 
             view.setOnClickListener {
                 // Gets Google Analytics instance
