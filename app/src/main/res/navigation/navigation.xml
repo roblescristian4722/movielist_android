@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/navigation"
-    app:startDestination="@id/homeList">
+    app:startDestination="@id/mainPager">
 
     <fragment
         android:id="@+id/homeList"
@@ -19,5 +19,13 @@
         <action
             android:id="@+id/action_movieInfo_to_homeList"
             app:destination="@id/homeList" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainPager"
+        android:name="com.example.movielist.views.MainPager"
+        android:label="MainPager" >
+        <action
+            android:id="@+id/action_mainPager_to_movieInfo"
+            app:destination="@id/movieInfo" />
     </fragment>
 </navigation>

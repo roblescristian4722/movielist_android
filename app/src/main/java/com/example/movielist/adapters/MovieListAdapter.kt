@@ -69,7 +69,7 @@ class MovieListAdapter(
                 // Selects movie info to be displayed on MovieInfo view via ViewModel
                 viewModel.selectMovie(movie)
                 // Navigates to MovieInfo fragment
-                view.findNavController().navigate(R.id.action_homeList_to_movieInfo)
+                view.findNavController().navigate(R.id.action_mainPager_to_movieInfo)
             }
         }
     }

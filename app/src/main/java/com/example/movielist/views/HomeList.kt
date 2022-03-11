@@ -66,6 +66,7 @@ class HomeList : Fragment() {
                     rvGenre = RecyclerView(requireContext())
                     rvGenre.layoutManager = layoutManager
                     rvGenre.adapter = adapter
+                    rvGenre.isNestedScrollingEnabled = false
                     adapter.updateList(it)
                     newLinearLayout.addView(rvGenre)
                 }
