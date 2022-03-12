@@ -15,4 +15,9 @@ interface TMDBServiceDefinition {
 
     @GET("/3/genre/movie/list")
     suspend fun getGenres(@Query("api_key") apiKey: String): Response<GenreResponse>
+
+    @GET("/3/discover/movie")
+    suspend fun getMovies(@Query("api_key") apiKey: String,
+                          @Query("page") page: Int = 1,
+                          @Query("with_genres") withGenres: List<Int>? = null): Response<BaseResponse>
 }

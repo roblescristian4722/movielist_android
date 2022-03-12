@@ -1,5 +1,6 @@
 package com.example.movielist.retrofitservices
 
+import android.util.Log
 import com.example.movielist.models.BaseResponse
 import com.example.movielist.models.GenreGroup
 import com.example.movielist.models.PopularMovieResponse
@@ -47,7 +48,7 @@ class TMDBService(private val apiKey: String,
     /**
      * Fetches the most recent list of popular movies from TMDB and posts the value on movieLiveData
      */
-    fun updateMovieList() {
+    fun updatePopularMovieList() {
         CoroutineScope(Dispatchers.IO).launch {
             // Call and body used for fetching popular movies
             var callPopularMovies: Response<BaseResponse>
@@ -77,6 +78,16 @@ class TMDBService(private val apiKey: String,
                     genres!![movie.genreIds[0]]?.movies?.add(movie)
                 // Once we iterate over all popular movies and create the genres map we post it using a viewmodel
                 movieViewModel.popularMoviesByGenreLiveData.postValue(genres!!)
+            }
+        }
+    }
+
+    fun getGenreMovies(page: Int = 1, withGenres: List<Int>) {
+        CoroutineScope(Dispatchers.IO).launch {
+            val call = movieService.getMovies(apiKey, page, withGenres)
+            val body = call.body()
+            body?.results?.let {
+                movieViewModel.selectedGenreMoviesLiveData.postValue(it)
             }
         }
     }

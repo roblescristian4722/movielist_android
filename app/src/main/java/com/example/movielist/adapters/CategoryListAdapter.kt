@@ -5,11 +5,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.movielist.R
 import com.example.movielist.models.GenreInfoResponse
+import com.example.movielist.retrofitservices.TMDBService
+import com.example.movielist.viewmodel.MovieViewModel
 
-class CategoryListAdapter: RecyclerView.Adapter<CategoryListAdapter.ViewHolder>() {
+class CategoryListAdapter(
+    private val movieService: TMDBService,
+    private val movieViewModel: MovieViewModel
+    ): RecyclerView.Adapter<CategoryListAdapter.ViewHolder>() {
     private var genreList = listOf<GenreInfoResponse>()
 
     inner class ViewHolder(private val view: View): RecyclerView.ViewHolder(view) {
@@ -21,7 +27,8 @@ class CategoryListAdapter: RecyclerView.Adapter<CategoryListAdapter.ViewHolder>(
 
             // TODO: Create an OnClickListener for the cardview that navigates to genre grid
             cvGenre.setOnClickListener {
-
+                movieService.getGenreMovies(withGenres = listOf(genre.id))
+                view.findNavController().navigate(R.id.action_mainPager_to_moviesByGenre)
             }
         }
     }

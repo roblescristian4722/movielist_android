@@ -17,6 +17,6 @@ class MainActivity : AppCompatActivity() {
 
         movieService.getConfiguration()
         movieService.getGenres()
-        movieService.updateMovieList()
+        movieService.updatePopularMovieList()
     }
 }

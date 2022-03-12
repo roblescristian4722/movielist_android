@@ -10,12 +10,15 @@ import androidx.lifecycle.Observer
 import com.example.movielist.R
 import com.example.movielist.adapters.CategoryListAdapter
 import com.example.movielist.databinding.FragmentGenreListBinding
+import com.example.movielist.retrofitservices.TMDBService
 import com.example.movielist.viewmodel.MovieViewModel
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class GenreList : Fragment() {
     private lateinit var binding: FragmentGenreListBinding
     private val movieViewModel: MovieViewModel by sharedViewModel()
+    private val movieService: TMDBService by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,7 +28,7 @@ class GenreList : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val adapter = CategoryListAdapter()
+        val adapter = CategoryListAdapter(movieService, movieViewModel)
 
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_genre_list, container, false)

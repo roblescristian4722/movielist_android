@@ -27,5 +27,12 @@
         <action
             android:id="@+id/action_mainPager_to_movieInfo"
             app:destination="@id/movieInfo" />
+        <action
+            android:id="@+id/action_mainPager_to_moviesByGenre"
+            app:destination="@id/moviesByGenre" />
     </fragment>
+    <fragment
+        android:id="@+id/moviesByGenre"
+        android:name="com.example.movielist.views.MoviesByGenre"
+        android:label="MoviesByGenre" />
 </navigation>
