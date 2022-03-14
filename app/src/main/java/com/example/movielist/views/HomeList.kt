@@ -43,8 +43,12 @@ class HomeList : Fragment() {
             var tvGenre: TextView
             var rvGenre: RecyclerView
             val newLinearLayout = LinearLayout(requireContext())
+
+            // Clears all views from Linear Layout
             newLinearLayout.orientation = LinearLayout.VERTICAL
             binding.llMovieList.removeAllViews()
+            
+            // Iterates over every genre available and creates a RecyclerView for each one
             for (genre in it) {
                 if (genre.value.movies.size > 0) {
                     // Title gets crated and added programmatically to layout

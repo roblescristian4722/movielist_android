@@ -6,12 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import com.example.movielist.R
 import com.example.movielist.adapters.MainPagerAdapter
 import com.example.movielist.databinding.FragmentMainPagerBinding
+import com.example.movielist.viewmodel.MovieViewModel
 import com.google.android.material.tabs.TabLayoutMediator
+import org.koin.android.ext.android.inject
 
 class MainPager : Fragment() {
+    private val movieViewModel: MovieViewModel by inject()
     private lateinit var binding: FragmentMainPagerBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,6 +29,11 @@ class MainPager : Fragment() {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main_pager, container, false)
         binding.vpMain.adapter = MainPagerAdapter(this)
+        binding.pbMainBar.visibility = View.VISIBLE
+
+        movieViewModel.popularMoviesByGenreLiveData.observe(viewLifecycleOwner, Observer {
+            binding.pbMainBar.visibility = View.GONE
+        })
 
         TabLayoutMediator(binding.tbMain, binding.vpMain) { tab, position ->
             when (position) {

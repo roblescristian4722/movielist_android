@@ -34,5 +34,9 @@
     <fragment
         android:id="@+id/moviesByGenre"
         android:name="com.example.movielist.views.MoviesByGenre"
-        android:label="MoviesByGenre" />
+        android:label="MoviesByGenre" >
+        <action
+            android:id="@+id/action_moviesByGenre_to_movieInfo"
+            app:destination="@id/movieInfo" />
+    </fragment>
 </navigation>

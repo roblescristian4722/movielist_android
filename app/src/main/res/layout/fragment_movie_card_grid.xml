@@ -3,25 +3,28 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="130dp"
-        android:layout_height="200dp"
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        android:layout_margin="8dp"
         android:orientation="vertical"
+        android:layout_columnWeight="1"
         tools:context=".views.MovieCardGrid">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/iv_movie_by_genre"
             android:layout_width="match_parent"
-            android:layout_height="130dp" />
+            android:layout_height="0dp"
+            android:layout_weight="5" />
+
         <TextView
             android:id="@+id/tv_title_movie_by_id"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:textSize="18sp"
-            android:textAlignment="center"
-            android:gravity="center"
+            android:layout_height="0dp"
+            android:textSize="16sp"
             android:textStyle="bold"
+            android:gravity="center_horizontal"
             android:background="@drawable/background_gradient"
-
+            android:layout_weight="1"
             tools:text="Movie title" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>

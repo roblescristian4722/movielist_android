@@ -1,6 +1,5 @@
 package com.example.movielist.retrofitservices
 
-import android.util.Log
 import com.example.movielist.models.BaseResponse
 import com.example.movielist.models.GenreGroup
 import com.example.movielist.models.PopularMovieResponse
@@ -87,7 +86,15 @@ class TMDBService(private val apiKey: String,
             val call = movieService.getMovies(apiKey, page, withGenres)
             val body = call.body()
             body?.results?.let {
-                movieViewModel.selectedGenreMoviesLiveData.postValue(it)
+                var genreMovies: MutableList<PopularMovieResponse> = it.toMutableList()
+                // If we fetch more than one page from the server then we append the results from of
+                // the call to the end of the existing list (page 1)
+                if (page > 1) {
+                    movieViewModel.selectedGenreMoviesLiveData.value?.let { oldList ->
+                        genreMovies = (oldList + genreMovies).toMutableList()
+                    }
+                }
+                movieViewModel.selectedGenreMoviesLiveData.postValue(genreMovies)
             }
         }
     }

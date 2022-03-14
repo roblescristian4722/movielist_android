@@ -71,4 +71,7 @@ dependencies {
 
     // add the Firebase SDK for Google Analytics
     implementation 'com.google.firebase:firebase-analytics:20.1.0'
+
+    // Grid Layout for using layout_columnWeight
+    implementation "androidx.gridlayout:gridlayout:1.0.0"
 }

@@ -25,9 +25,9 @@ class CategoryListAdapter(
         fun bind(genre: GenreInfoResponse) {
             tvGenre.text = genre.name
 
-            // TODO: Create an OnClickListener for the cardview that navigates to genre grid
             cvGenre.setOnClickListener {
                 movieService.getGenreMovies(withGenres = listOf(genre.id))
+                movieViewModel.selectedGenreLiveData.postValue(genre.id)
                 view.findNavController().navigate(R.id.action_mainPager_to_moviesByGenre)
             }
         }
