@@ -67,6 +67,7 @@ class HomeList : Fragment() {
                     layoutManager.orientation = RecyclerView.HORIZONTAL
 
                     rvGenre = RecyclerView(requireContext())
+                    //rvGenre.descendantFocusability = ViewGroup.FOCUS_AFTER_DESCENDANTS
                     rvGenre.layoutManager = layoutManager
                     rvGenre.adapter = adapter
                     rvGenre.isNestedScrollingEnabled = false

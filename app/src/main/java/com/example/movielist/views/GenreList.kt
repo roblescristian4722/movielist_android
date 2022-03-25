@@ -1,12 +1,15 @@
 package com.example.movielist.views
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
+import androidx.navigation.findNavController
 import com.example.movielist.R
 import com.example.movielist.adapters.CategoryListAdapter
 import com.example.movielist.databinding.FragmentGenreListBinding
@@ -39,5 +42,15 @@ class GenreList : Fragment() {
         })
 
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val viewHolder = binding.rvCategoryList.layoutManager?.findViewByPosition(0)
+        val flGenre = viewHolder?.findViewById<FrameLayout>(R.id.fl_genre)
+        flGenre?.let {
+            Log.d("Genre FL", "Sí se pudo")
+            it.requestFocus()
+        }
     }
 }

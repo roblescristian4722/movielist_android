@@ -5,19 +5,33 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".views.GenreCard">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cv_genre"
+    <FrameLayout
+        android:id="@+id/fl_genre"
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:layout_margin="16dp"
-        app:cardCornerRadius="5dp">
+        android:focusable="true"
+        android:background="@drawable/state_list_button">
 
-        <TextView
-            android:id="@+id/tv_genre"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_genre"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/background_gradient"
-            tools:text="Sample text"
-            style="@style/genre_card" />
-    </androidx.cardview.widget.CardView>
+            android:layout_margin="16dp"
+            app:cardCornerRadius="5dp">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/background_gradient">
+
+                <TextView
+                    android:id="@+id/tv_genre"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:text="Sample text"
+                    style="@style/genre_card" />
+
+            </FrameLayout>
+        </androidx.cardview.widget.CardView>
+    </FrameLayout>
 </layout>

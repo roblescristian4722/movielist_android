@@ -4,85 +4,92 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".MovieCard">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cv_movie"
-        android:layout_width="320dp"
+    <FrameLayout
+        android:layout_width="340dp"
         android:layout_height="200dp"
-        android:layout_margin="16dp"
-        app:cardCornerRadius="5dp" >
+        android:focusable="true"
+        android:background="@drawable/state_list_button">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_movie"
             android:layout_height="match_parent"
-            android:background="@drawable/background_gradient">
+            android:layout_width="match_parent"
+            android:layout_margin="16dp"
+            app:cardCornerRadius="5dp" >
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/iv_movie_image"
-                android:layout_width="wrap_content"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="fitStart"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:background="@drawable/background_gradient" >
 
-            <TextView
-                android:id="@+id/tv_title"
-                android:layout_width="180dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:textAlignment="center"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/iv_movie_image"
-                app:layout_constraintTop_toTopOf="parent" />
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_movie_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitStart"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/tv_rating_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="@string/rating_label"
-                android:textStyle="bold"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_rating"
-                app:layout_constraintStart_toEndOf="@+id/iv_movie_image"
-                app:layout_constraintTop_toTopOf="@+id/tv_rating" />
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:textAlignment="center"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/iv_movie_image"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/tv_rating"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="82dp"
-                app:layout_constraintBottom_toTopOf="@+id/tv_date"
-                app:layout_constraintStart_toEndOf="@id/tv_rating_label"
-                app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/tv_rating_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/rating_label"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_rating"
+                    app:layout_constraintStart_toEndOf="@+id/iv_movie_image"
+                    app:layout_constraintTop_toTopOf="@+id/tv_rating" />
 
-            <TextView
-                android:id="@+id/tv_date_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="@string/date_label"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_date"
-                app:layout_constraintStart_toEndOf="@+id/iv_movie_image"
-                app:layout_constraintTop_toTopOf="@+id/tv_date" />
+                <TextView
+                    android:id="@+id/tv_rating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="82dp"
+                    app:layout_constraintBottom_toTopOf="@+id/tv_date"
+                    app:layout_constraintStart_toEndOf="@id/tv_rating_label"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/tv_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginBottom="16dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tv_date_label"
-                app:layout_constraintTop_toBottomOf="@+id/tv_rating" />
+                <TextView
+                    android:id="@+id/tv_date_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/date_label"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_date"
+                    app:layout_constraintStart_toEndOf="@+id/iv_movie_image"
+                    app:layout_constraintTop_toTopOf="@+id/tv_date" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
+                <TextView
+                    android:id="@+id/tv_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginBottom="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/tv_date_label"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_rating" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+    </FrameLayout>
 </layout>

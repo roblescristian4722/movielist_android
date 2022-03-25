@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -25,6 +26,7 @@ class MoviesByGenreAdapter(
     class ViewHolder(private val view: View, private val movieViewModel: MovieViewModel): RecyclerView.ViewHolder(view) {
         private val tvTitle: TextView = view.findViewById(R.id.tv_title_movie_by_id)
         private val ivMovie: ImageView = view.findViewById(R.id.iv_movie_by_genre)
+        private val llMovieByGenre: LinearLayout = view.findViewById(R.id.ll_movie_by_genre)
 
         fun bind(movie: PopularMovieResponse) {
             tvTitle.text = movie.title
@@ -35,7 +37,7 @@ class MoviesByGenreAdapter(
                     .into(ivMovie)
             }
 
-            view.setOnClickListener {
+            llMovieByGenre.setOnClickListener {
                 // Gets Google Analytics instance
                 val firebase = FirebaseAnalytics.getInstance(view.context)
                 val bundle = Bundle()
@@ -46,7 +48,7 @@ class MoviesByGenreAdapter(
                 firebase.logEvent(FirebaseAnalytics.Event.SELECT_ITEM, bundle)
 
                 movieViewModel.selectedMovieLiveData.postValue(movie)
-                view.findNavController().navigate(R.id.action_moviesByGenre_to_movieInfo)
+                it.findNavController().navigate(R.id.action_moviesByGenre_to_movieInfo)
             }
         }
     }
@@ -59,7 +61,6 @@ class MoviesByGenreAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(movies[position])
-        // TODO: if we are on the last position of the grid layout we download the next page
         if (position == movies.size - 1) {
             currentPage++
             movieViewModel.selectedGenreLiveData.value?.let {

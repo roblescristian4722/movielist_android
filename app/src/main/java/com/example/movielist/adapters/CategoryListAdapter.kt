@@ -1,8 +1,11 @@
 package com.example.movielist.adapters
 
+import android.util.Log
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.navigation.findNavController
@@ -20,12 +23,16 @@ class CategoryListAdapter(
 
     inner class ViewHolder(private val view: View): RecyclerView.ViewHolder(view) {
         private val tvGenre: TextView = view.findViewById(R.id.tv_genre)
-        private val cvGenre: CardView = view.findViewById(R.id.cv_genre)
+        private val flGenre: FrameLayout = view.findViewById(R.id.fl_genre)
 
-        fun bind(genre: GenreInfoResponse) {
+        fun bind(genre: GenreInfoResponse, position: Int) {
+            if (position == 0) {
+                flGenre.requestFocus()
+                Log.d("focus", "position: $position")
+            }
             tvGenre.text = genre.name
 
-            cvGenre.setOnClickListener {
+            flGenre.setOnClickListener {
                 movieService.getGenreMovies(withGenres = listOf(genre.id))
                 movieViewModel.selectedGenreLiveData.postValue(genre.id)
                 view.findNavController().navigate(R.id.action_mainPager_to_moviesByGenre)
@@ -42,7 +49,7 @@ class CategoryListAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         if (genreList.isNotEmpty())
-            holder.bind(genreList[position])
+            holder.bind(genreList[position], position)
     }
 
     fun updateList(list: List<GenreInfoResponse>) {

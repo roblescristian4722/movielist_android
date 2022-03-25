@@ -8,4 +8,5 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="start_gradient">#33FFFA</color>
+    <color name="transparent">#FFFFFF</color>
 </resources>

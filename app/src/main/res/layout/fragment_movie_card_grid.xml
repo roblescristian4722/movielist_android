@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/ll_movie_by_genre"
         android:layout_width="match_parent"
-        android:layout_height="230dp"
-        android:layout_margin="8dp"
+        android:layout_height="280dp"
+        android:layout_margin="16dp"
         android:orientation="vertical"
         android:layout_columnWeight="1"
+        android:focusable="true"
+        android:background="@drawable/state_list_button"
         tools:context=".views.MovieCardGrid">
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -27,5 +30,5 @@
             android:layout_weight="1"
             tools:text="Movie title" />
 
-    </androidx.appcompat.widget.LinearLayoutCompat>
+    </LinearLayout>
 </layout>
