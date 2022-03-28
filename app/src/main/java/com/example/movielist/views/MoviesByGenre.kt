@@ -27,7 +27,7 @@ class MoviesByGenre : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val adapter = MoviesByGenreAdapter(movieViewModel, movieService)
+        val adapter = MoviesByGenreAdapter(movieViewModel, movieService, requireContext())
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_movies_by_genre, container, false)
         binding.rvMoviesById.adapter = adapter

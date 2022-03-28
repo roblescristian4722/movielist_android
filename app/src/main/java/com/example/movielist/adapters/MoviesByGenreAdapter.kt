@@ -1,5 +1,6 @@
 package com.example.movielist.adapters
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -19,11 +20,16 @@ import com.google.firebase.analytics.FirebaseAnalytics
 
 class MoviesByGenreAdapter(
     private val movieViewModel: MovieViewModel,
-    private val movieService: TMDBService): RecyclerView.Adapter<MoviesByGenreAdapter.ViewHolder>() {
+    private val movieService: TMDBService,
+    private val context: Context): RecyclerView.Adapter<MoviesByGenreAdapter.ViewHolder>() {
     private var movies = mutableListOf<PopularMovieResponse>()
     private var currentPage = 1
 
-    class ViewHolder(private val view: View, private val movieViewModel: MovieViewModel): RecyclerView.ViewHolder(view) {
+    class ViewHolder(
+        private val view: View,
+        private val movieViewModel: MovieViewModel,
+        private val movieService: TMDBService,
+        private val context: Context): RecyclerView.ViewHolder(view) {
         private val tvTitle: TextView = view.findViewById(R.id.tv_title_movie_by_id)
         private val ivMovie: ImageView = view.findViewById(R.id.iv_movie_by_genre)
         private val llMovieByGenre: LinearLayout = view.findViewById(R.id.ll_movie_by_genre)
@@ -42,6 +48,12 @@ class MoviesByGenreAdapter(
                 val firebase = FirebaseAnalytics.getInstance(view.context)
                 val bundle = Bundle()
 
+                // Gets movie trailer
+                movieService.getMovieVideos(
+                    movie.id,
+                    context.getString(R.string.default_video_site),
+                    context.getString(R.string.default_video_type))
+
                 // Logs the click event
                 bundle.putInt(FirebaseAnalytics.Param.ITEM_ID, movie.id)
                 bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, movie.title)
@@ -54,9 +66,8 @@ class MoviesByGenreAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        Log.d("rv page", "$currentPage")
         val holderView = LayoutInflater.from(parent.context).inflate(R.layout.fragment_movie_card_grid, parent, false)
-        return ViewHolder(holderView, movieViewModel)
+        return ViewHolder(holderView, movieViewModel,movieService, context)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

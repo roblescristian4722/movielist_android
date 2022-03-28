@@ -1,5 +1,6 @@
 package com.example.movielist.adapters
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,11 +13,14 @@ import com.bumptech.glide.Glide
 import com.example.movielist.R
 import com.example.movielist.models.GenreGroup
 import com.example.movielist.models.PopularMovieResponse
+import com.example.movielist.retrofitservices.TMDBService
 import com.example.movielist.viewmodel.MovieViewModel
 import com.google.firebase.analytics.FirebaseAnalytics
 
 class MovieListAdapter(
     private val viewModel: MovieViewModel,
+    private val movieService: TMDBService,
+    private val context: Context,
     private val genre: Int): RecyclerView.Adapter<MovieListAdapter.ViewHolder>() {
     private var movies = mutableListOf<PopularMovieResponse>()
 
@@ -62,6 +66,12 @@ class MovieListAdapter(
                 // Gets Google Analytics instance
                 val firebase = FirebaseAnalytics.getInstance(view.context)
                 val bundle = Bundle()
+
+                // Gets movie trailer
+                movieService.getMovieVideos(
+                    movie.id,
+                    context.getString(R.string.default_video_site),
+                    context.getString(R.string.default_video_type))
 
                 // Logs the click event
                 bundle.putInt(FirebaseAnalytics.Param.ITEM_ID, movie.id)

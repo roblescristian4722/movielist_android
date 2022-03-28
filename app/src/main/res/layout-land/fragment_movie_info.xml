@@ -51,9 +51,7 @@
                     android:text="@{movieInfo.selectedMovieLiveData.title}"
                     android:textAlignment="center"
                     android:textSize="28sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:textStyle="bold"/>
 
                 <TextView
                     android:id="@+id/tv_description"
@@ -64,9 +62,7 @@
                     android:layout_marginEnd="16dp"
                     android:justificationMode="inter_word"
                     android:text="@{movieInfo.selectedMovieLiveData.overview}"
-                    android:textSize="24sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:textSize="24sp" />
 
                 <FrameLayout
                     android:id="@+id/fl_youtube_player_holder"

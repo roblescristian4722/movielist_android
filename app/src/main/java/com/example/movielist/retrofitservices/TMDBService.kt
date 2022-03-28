@@ -1,7 +1,9 @@
 package com.example.movielist.retrofitservices
 
+import android.util.Log
 import com.example.movielist.models.BaseResponse
 import com.example.movielist.models.GenreGroup
+import com.example.movielist.models.MovieVideoResponse
 import com.example.movielist.models.PopularMovieResponse
 import com.example.movielist.retrofitdefinitions.TMDBServiceDefinition
 import com.example.movielist.viewmodel.MovieViewModel
@@ -81,6 +83,11 @@ class TMDBService(private val apiKey: String,
         }
     }
 
+    /**
+     * Gets movies filtered by genres from TMDB, if the page we fetched is greater than 1 then we post
+     * the received values into selectedMoviesLiveData, otherwise we append the fetched page to the end
+     * of the list stored in selectedMoviesLiveData
+     */
     fun getGenreMovies(page: Int = 1, withGenres: List<Int>) {
         CoroutineScope(Dispatchers.IO).launch {
             val call = movieService.getMovies(apiKey, page, withGenres)
@@ -95,6 +102,26 @@ class TMDBService(private val apiKey: String,
                     }
                 }
                 movieViewModel.selectedGenreMoviesLiveData.postValue(genreMovies)
+            }
+        }
+    }
+
+    /**
+     * Gets the movie trailer of a movie and posts it to selectedMovieVideo
+     */
+    fun getMovieVideos(movieId: Int, defaultSite: String, defaultType: String) {
+        CoroutineScope(Dispatchers.IO).launch {
+            val call = movieService.getMovieVideos(movieId, apiKey)
+            val body = call.body()
+            var trailers: List<MovieVideoResponse>?
+            body?.results.let { results ->
+                Log.d("movieVideo", "results: $results")
+                trailers = results?.filter {
+                    it.official && it.site == defaultSite && it.type == defaultType }
+                trailers?.let {
+                    if (it.isNotEmpty())
+                        movieViewModel.selectedMovieVideo.postValue(it[0].key)
+                }
             }
         }
     }

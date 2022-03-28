@@ -62,7 +62,7 @@ class HomeList : Fragment() {
                     newLinearLayout.addView(tvGenre)
 
                     // RecyclerView gets created and added programmatically to layout
-                    val adapter = MovieListAdapter(movieViewModel, genre.key)
+                    val adapter = MovieListAdapter(movieViewModel, movieService, requireContext(), genre.key)
                     val layoutManager = LinearLayoutManager(requireContext())
                     layoutManager.orientation = RecyclerView.HORIZONTAL
 

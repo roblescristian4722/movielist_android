@@ -13,19 +13,17 @@ import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.example.movielist.R
 import com.example.movielist.databinding.FragmentMovieInfoBinding
+import com.example.movielist.retrofitservices.TMDBService
 import com.example.movielist.viewmodel.MovieViewModel
 import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubePlayer
 import com.google.android.youtube.player.YouTubePlayerSupportFragmentX
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class MovieInfo : Fragment() {
     private val movieViewModel: MovieViewModel by sharedViewModel()
     private lateinit var binding: FragmentMovieInfoBinding
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,9 +38,9 @@ class MovieInfo : Fragment() {
             override fun onInitializationSuccess(
                 p0: YouTubePlayer.Provider?,
                 p1: YouTubePlayer?,
-                p2: Boolean
+                wasRestored: Boolean
             ) {
-                p1?.loadVideo("9hIRq5HTh5s")
+                p1?.loadVideo(movieViewModel.selectedMovieVideo.value)
                 p1?.play()
             }
 

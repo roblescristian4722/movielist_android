@@ -14,6 +14,7 @@ class MovieViewModel: ViewModel() {
     val genreListLiveData = MutableLiveData<List<GenreInfoResponse>>()
     val selectedGenreMoviesLiveData = MutableLiveData<List<PopularMovieResponse>>()
     val selectedGenreLiveData = MutableLiveData<Int>()
+    val selectedMovieVideo = MutableLiveData<String>()
 
     fun selectMovie(movie: PopularMovieResponse) {
         selectedMovieLiveData.postValue(movie)
