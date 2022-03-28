@@ -77,4 +77,7 @@ dependencies {
 
     // Leanback for Android TV support
     implementation 'androidx.leanback:leanback:1.0.0'
+
+    // Youtube api
+    implementation files("libs\\YouTubeAndroidPlayerApi.jar")
 }
