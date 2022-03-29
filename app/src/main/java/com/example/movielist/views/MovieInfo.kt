@@ -1,24 +1,18 @@
 package com.example.movielist.views
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.example.movielist.R
 import com.example.movielist.databinding.FragmentMovieInfoBinding
-import com.example.movielist.retrofitservices.TMDBService
 import com.example.movielist.viewmodel.MovieViewModel
-import com.google.android.youtube.player.YouTubeInitializationResult
-import com.google.android.youtube.player.YouTubePlayer
-import com.google.android.youtube.player.YouTubePlayerSupportFragmentX
-import org.koin.android.ext.android.inject
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class MovieInfo : Fragment() {
@@ -33,27 +27,16 @@ class MovieInfo : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_movie_info, container, false)
         binding.movieInfo = movieViewModel
 
-        val youtubePlayerFragment = YouTubePlayerSupportFragmentX.newInstance()
-        youtubePlayerFragment.initialize(getString(R.string.youtube_api_key), object: YouTubePlayer.OnInitializedListener {
-            override fun onInitializationSuccess(
-                p0: YouTubePlayer.Provider?,
-                p1: YouTubePlayer?,
-                wasRestored: Boolean
-            ) {
-                p1?.loadVideo(movieViewModel.selectedMovieVideo.value)
-                p1?.play()
+        lifecycle.addObserver(binding.youtubePlayerView)
+        binding.youtubePlayerView.addYouTubePlayerListener(object: AbstractYouTubePlayerListener() {
+            override fun onReady(youTubePlayer: YouTubePlayer) {
+                super.onReady(youTubePlayer)
+                val videoId = movieViewModel.selectedMovieVideo.value
+                videoId?.let {
+                    youTubePlayer.loadVideo(it, 0.toFloat())
+                }
             }
-
-            override fun onInitializationFailure(
-                p0: YouTubePlayer.Provider?,
-                p1: YouTubeInitializationResult?
-            ) {
-                Log.d("player", "$p1")
-            }
-
         })
-        val transaction: FragmentTransaction = childFragmentManager.beginTransaction()
-        transaction.replace(R.id.fl_youtube_player_holder, youtubePlayerFragment).commit()
 
         movieViewModel.selectedMovieLiveData.observe(viewLifecycleOwner, Observer {
             movieViewModel.configurationLiveData.value?.let { configuration ->

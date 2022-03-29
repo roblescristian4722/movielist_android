@@ -76,7 +76,8 @@ class TMDBService(private val apiKey: String,
             // If both movie and genre lists were fetched correctly we create a map (genre id -> movie)
             if (movies.isNotEmpty() && !genres.isNullOrEmpty()) {
                 for (movie in movies)
-                    genres!![movie.genreIds[0]]?.movies?.add(movie)
+                    if (movie.genreIds.isNotEmpty())
+                        genres!![movie.genreIds[0]]?.movies?.add(movie)
                 // Once we iterate over all popular movies and create the genres map we post it using a viewmodel
                 movieViewModel.popularMoviesByGenreLiveData.postValue(genres!!)
             }

@@ -64,8 +64,8 @@
                     android:text="@{movieInfo.selectedMovieLiveData.overview}"
                     android:textSize="24sp" />
 
-                <FrameLayout
-                    android:id="@+id/fl_youtube_player_holder"
+                <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+                    android:id="@+id/youtube_player_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp" />
