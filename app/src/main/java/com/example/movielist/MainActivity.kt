@@ -2,7 +2,6 @@ package com.example.movielist
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import com.example.movielist.retrofitservices.TMDBService
 import com.example.movielist.viewmodel.MovieViewModel
 import org.koin.android.ext.android.inject

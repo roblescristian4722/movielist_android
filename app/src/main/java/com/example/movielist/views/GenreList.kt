@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
-import androidx.navigation.findNavController
 import com.example.movielist.R
 import com.example.movielist.adapters.CategoryListAdapter
 import com.example.movielist.databinding.FragmentGenreListBinding
@@ -22,10 +21,6 @@ class GenreList : Fragment() {
     private lateinit var binding: FragmentGenreListBinding
     private val movieViewModel: MovieViewModel by sharedViewModel()
     private val movieService: TMDBService by inject()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

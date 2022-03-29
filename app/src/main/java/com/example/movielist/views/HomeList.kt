@@ -1,7 +1,6 @@
 package com.example.movielist.views
 
 import android.os.Bundle
-import android.util.Log
 import android.view.ContextThemeWrapper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -25,10 +24,6 @@ class HomeList : Fragment() {
     private val movieViewModel: MovieViewModel by sharedViewModel()
     private val movieService: TMDBService by inject()
     private lateinit var binding: FragmentHomeListBinding
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

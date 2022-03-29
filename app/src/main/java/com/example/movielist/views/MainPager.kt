@@ -18,10 +18,6 @@ class MainPager : Fragment() {
     private val movieViewModel: MovieViewModel by inject()
     private lateinit var binding: FragmentMainPagerBinding
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

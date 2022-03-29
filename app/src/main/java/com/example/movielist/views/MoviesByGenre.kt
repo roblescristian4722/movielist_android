@@ -19,10 +19,6 @@ class MoviesByGenre : Fragment() {
     private val movieViewModel: MovieViewModel by inject()
     private val movieService: TMDBService by inject()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

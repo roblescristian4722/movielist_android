@@ -12,10 +12,6 @@ import com.example.movielist.databinding.FragmentMovieCardGridBinding
 class MovieCardGrid : Fragment() {
     private lateinit var binding: FragmentMovieCardGridBinding
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

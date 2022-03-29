@@ -10,7 +10,6 @@
     <string name="image_base_url">https://image.tmdb.org/t/p/</string>
     <string name="tab_0">HOME</string>
     <string name="tab_1">CATEGORIES</string>
-    <string name="youtube_api_key">AIzaSyAEA0A_IG8L7wC4L7f0fx0equxT7d6koPQ</string>
     <string name="default_video_site">YouTube</string>
     <string name="default_video_type">Trailer</string>
 </resources>
