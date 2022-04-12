@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "477042991509",
+    "project_id": "movielist-af2dd",
+    "storage_bucket": "movielist-af2dd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:477042991509:android:8bac7b38a061e78bbfd69c",
+        "android_client_info": {
+          "package_name": "com.example.movielist.tv"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "477042991509-4k7u7cdiqku1ahhbih7rnubj3dt0n3bj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCL99d1FVRtFDuJKI0S9s3GmGUbyOeNJT4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "477042991509-4k7u7cdiqku1ahhbih7rnubj3dt0n3bj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

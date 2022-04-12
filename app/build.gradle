@@ -23,6 +23,22 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    flavorDimensions += "platform"
+    // Product flavors for distinguishing mobile and tv builds
+    productFlavors {
+        tv {
+            applicationIdSuffix ".tv"
+            versionNameSuffix "-tv"
+            dimension "platform"
+        }
+        mobile {
+            applicationIdSuffix ".mobile"
+            versionNameSuffix "-mobile"
+            dimension "platform"
+        }
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -50,8 +66,8 @@ dependencies {
     implementation "com.google.android.material:material:1.5.0"
 
     // Navigation Fragment
-    implementation "androidx.navigation:navigation-fragment-ktx:2.4.1"
-    implementation "androidx.navigation:navigation-ui-ktx:2.4.1"
+    implementation "androidx.navigation:navigation-fragment-ktx:2.4.2"
+    implementation "androidx.navigation:navigation-ui-ktx:2.4.2"
 
     // RecyclerView
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
