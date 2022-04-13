@@ -4,6 +4,7 @@ import com.example.movielist.R
 import com.example.movielist.retrofitdefinitions.TMDBServiceDefinition
 import com.example.movielist.retrofitservices.TMDBService
 import com.example.movielist.viewmodel.MovieViewModel
+import com.google.android.exoplayer2.ExoPlayer
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -29,5 +30,8 @@ val module = module {
                     androidContext().resources.getInteger(R.integer.max_home_pages),
                     get(),
                     get())
+    }
+    single {
+        ExoPlayer.Builder(androidContext()).build()
     }
 }

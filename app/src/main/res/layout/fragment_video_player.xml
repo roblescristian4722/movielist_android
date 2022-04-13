@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".views.VideoPlayer">
+
+    <com.google.android.exoplayer2.ui.StyledPlayerView
+        android:id="@+id/spv_player"
+        android:layout_width="300dp"
+        android:layout_height="200dp" />
+
+</layout>
