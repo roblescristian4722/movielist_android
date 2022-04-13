@@ -12,4 +12,6 @@
     <string name="tab_1">CATEGORIES</string>
     <string name="default_video_site">YouTube</string>
     <string name="default_video_type">Trailer</string>
+    <string name="sample_mp4_video">"https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4"</string>
+    <string name="play_msg">PLAY TRAILER</string>
 </resources>

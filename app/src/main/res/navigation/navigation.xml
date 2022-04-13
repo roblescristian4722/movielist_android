@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
     app:startDestination="@id/mainPager">
 
@@ -19,6 +20,9 @@
         <action
             android:id="@+id/action_movieInfo_to_homeList"
             app:destination="@id/homeList" />
+        <action
+            android:id="@+id/action_movieInfo_to_videoPlayer"
+            app:destination="@id/videoPlayer" />
     </fragment>
     <fragment
         android:id="@+id/mainPager"
@@ -39,4 +43,9 @@
             android:id="@+id/action_moviesByGenre_to_movieInfo"
             app:destination="@id/movieInfo" />
     </fragment>
+    <fragment
+        android:id="@+id/videoPlayer"
+        android:name="com.example.movielist.views.VideoPlayer"
+        android:label="fragment_video_player"
+        tools:layout="@layout/fragment_video_player" />
 </navigation>
