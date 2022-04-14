@@ -24,6 +24,19 @@ class VideoPlayer : Fragment() {
         binding.spvPlayer.player = player
         binding.spvPlayer.resizeMode = AspectRatioFrameLayout.RESIZE_MODE_FILL
 
+        binding.spvPlayer.setOnKeyListener(object: View.OnKeyListener {
+            override fun onKey(p0: View?, p1: Int, p2: KeyEvent?): Boolean {
+                if (p2?.action == KeyEvent.ACTION_DOWN) {
+                    if (p1 == KeyEvent.KEYCODE_DPAD_CENTER) {
+                        (binding.spvPlayer.player as ExoPlayer).playWhenReady = !(binding.spvPlayer.player as ExoPlayer).playWhenReady
+                        return true
+                    }
+                }
+                return false
+            }
+
+        })
+
         return binding.root
     }
 

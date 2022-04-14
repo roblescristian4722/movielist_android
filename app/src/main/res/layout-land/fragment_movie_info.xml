@@ -64,14 +64,20 @@
                     android:text="@{movieInfo.selectedMovieLiveData.overview}"
                     android:textSize="24sp" />
 
-                <Button
-                    android:id="@+id/btn_play_trailer"
-                    android:text="@string/play_msg"
-                    android:layout_marginTop="16dp"
+                <FrameLayout
+                    android:background="@drawable/state_list_button"
                     android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="16dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:text="@string/play_msg" />
+                    android:layout_height="wrap_content">
+                    <Button
+                        android:id="@+id/btn_play_trailer"
+                        android:text="@string/play_msg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="@string/play_msg" />
+
+                </FrameLayout>
 
             </androidx.appcompat.widget.LinearLayoutCompat>
         </androidx.core.widget.NestedScrollView>
